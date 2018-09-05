@@ -1,0 +1,30 @@
+language: common-lisp
+sudo: required
+
+env:
+  global:
+    - PATH=~/.roswell/bin:$PATH
+    - ROSWELL_INSTALL_DIR=$HOME/.roswell
+  matrix:
+    - LISP=sbcl-bin COVERALLS=true
+    - LISP=allegro
+    - LISP=ecl
+    - LISP=clisp
+
+cache:
+  directories:
+    - $HOME/.roswell
+
+install:
+  # Install Roswell
+  - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
+  - ros install prove
+
+script:
+  - run-prove cl-dotenv-test.asd
+  - if [ "$LISP" = "sbcl" ]; then
+      ros -s prove -s cl-coveralls
+          -e '(or (coveralls:with-coveralls (:exclude (list "t"))
+                    (prove:run :cl-dotenv-test))
+                  (uiop:quit -1))';
+    fi

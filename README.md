@@ -39,7 +39,7 @@ Setting a variable overwrites any existing value
 ```
 
 ## Installation
-The package is not yet available through Quicklisp.
+The package is not yet available through Quicklisp. ([Issue](https://github.com/quicklisp/quicklisp-projects/issues/1559))
 
 **Manual installation steps**:
 ```bash
@@ -56,7 +56,7 @@ All contributions are very much welcome. Please get familiar with the [contribut
 
 ## Commands
 - `make install`: Install the packages **cl-dotenv** and **cl-dotenv-test** locally using [Roswell](https://github.com/roswell/roswell)   
-- `make tests`: Run the tests using [Prove](https://github.com/fukamachi/prove)
+- `make test`: Run the tests using [Prove](https://github.com/fukamachi/prove)
 - `make coverage`: Run the tests and generate a coverage report
 - `make sbcl`: Start SBCL and load **cl-dotenv**
 

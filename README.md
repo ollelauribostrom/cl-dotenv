@@ -6,26 +6,31 @@ Tiny utility library for loading .env files & getting/setting environment variab
 > Currently tested with: SBCL, Allegro, ECL, CLISP
 
 ## Usage
-> NOTE: Corrupt .env files will generate an error when being loaded. Make sure your .env file is in the format:   
+> NOTE: Corrupt .env files will generate an error when being loaded. Make sure your .env file is in the format:
+
 ```bash
-  key1=value   
-  key2=value   
+  key1=value
+  key2=value
 ```
 
 ### Load & set the environment from an .env file
 Calling `load-env` loads the environment from the specified .env file.
+
 ```lisp
   (dotenv:load-env (merge-pathnames "./path/.env")) 
     => t
 ```
 
-### Get an environment variable    
+### Get an environment variable
 The value of a variable can be read by calling `get-env` with the name of the variable.
+
 ```lisp
   (dotenv:get-env "SOME_VAR")
     => "value" or nil
 ```
+
 If you wish, you can provide a default value that is returned if the variable you are trying to read is not set. 
+
 ```lisp
   (dotenv:get-env "SOME_NONEXISTING_VAR" "default-value")
     => "default-value"
@@ -33,6 +38,7 @@ If you wish, you can provide a default value that is returned if the variable yo
 
 ### Set an environment variable   
 Setting a variable overwrites any existing value   
+
 ```lisp
   (dotenv:set-env "SOME_VAR" "some_value")
     => t
@@ -42,10 +48,12 @@ Setting a variable overwrites any existing value
 The package is not yet available through Quicklisp. ([Issue](https://github.com/quicklisp/quicklisp-projects/issues/1559))
 
 **Manual installation steps**:
+
 ```bash
   cd ~/quicklisp/local-projects/   
-  git clone https://github.com/ollelauribostrom/cl-dotenv.git  
+  git clone https://github.com/ollelauribostrom/cl-dotenv.git
 ```
+
 ```lisp
   (ql:quickload :cl-dotenv)
 ```

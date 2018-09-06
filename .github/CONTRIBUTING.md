@@ -4,7 +4,7 @@
 - Git
 - [SBCL](http://www.sbcl.org/)
 - [Roswell](https://github.com/roswell/roswell)
-- [Cmake](https://cmake.org/install/)
+- [make](https://www.gnu.org/software/make/)
 
 ## Contribution process overview
 1. Create your own fork of this project.

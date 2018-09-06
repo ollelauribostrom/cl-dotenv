@@ -1,28 +1,28 @@
-(defpackage cl-dotenv-test
-  (:use :cl
-        :cl-dotenv
-        :prove))
-(in-package :cl-dotenv-test)
+(defpackage #:cl-dotenv/tests
+  (:use #:cl
+        #:cl-dotenv
+        #:prove))
+(in-package #:cl-dotenv/tests)
 
-(plan 3)
+(plan 1)
 
-(subtest "cl-dotenv:get-env"
-  (subtest "get-env uses provided default value if no env variable is found"
-    (is (dotenv:get-env "NOT_SET" "default") "default"))
-  (subtest "get-env returns nil if not env variable is found & no default is provided"
-    (is (dotenv:get-env "NOT_SET") nil)))
+(subtest "cl-dotenv:read-env"
+  (subtest "READ-ENV throws error if .env file is corrupt"
+    (is-error (.env:read-env (asdf:system-relative-pathname "cl-dotenv-test"
+                                                            "./tests/.env-corrupt"))
+              'malformed-entry))
 
-(subtest "cl-dotenv:set-env"
-  (subtest "set-env returns true & sets the environment"
-    (is (dotenv:set-env "TEST_VAR" "test") t)
-    (is (dotenv:get-env "TEST_VAR") "test")))
+  (subtest "READ-ENV loads a .env file"
+    (let ((env (.env:read-env (asdf:system-relative-pathname "cl-dotenv-test"
+                                                             "./tests/.env-test"))))
+      (is (gethash "TEST_VAR_1" env) "test1")
+      (is (gethash "TEST_VAR_2" env) "test2")))
 
-(subtest "cl-dotenv:load-env"
-  (subtest "load-env throws error if .env file is corrupt"
-    (is-error (dotenv:load-env (merge-pathnames "./tests/.env-corrupt")) 'simple-error))
-  (subtest "load-env loads a .env file & sets the environment"
-    (dotenv:load-env (merge-pathnames "./tests/.env-test"))
-    (is (dotenv:get-env "TEST_VAR_1") "test1")
-    (is (dotenv:get-env "TEST_VAR_2") "test2")))
+  (subtest "LOAD-ENV  sets the environment"
+    (.env:load-env (asdf:system-relative-pathname "cl-dotenv-test"
+                                                  "./tests/.env-test"))
+
+    (is (uiop:getenv "TEST_VAR_1") "test1")
+    (is (uiop:getenv "TEST_VAR_2") "test2")))
 
 (finalize)

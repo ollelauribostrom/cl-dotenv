@@ -4,7 +4,7 @@
 ;;; Inspiration from http://cl-cookbook.sourceforge.net/os.html & http://www.lispforum.com/viewtopic.php?f=2&t=446 & https://www.npmjs.com/package/dotenv
 
 (defpackage cl-dotenv
-  (:use :cl :cl-ppcre)
+  (:use :cl :cl-ppcre :uiop)
   (:export :load-env :get-env :set-env)
   (:nicknames :dotenv))
 (in-package :cl-dotenv)
@@ -15,24 +15,13 @@
       do (destructuring-bind (&optional name value &rest _) (cl-ppcre:split "=" line)
         (if (and name value)
           (set-env name value)
-          (error "Invalid .env file"))))
-    t))
+          (error "Invalid .env file"))))))
 
 (defun get-env (name &optional default)
   (or
-    #+Allegro (sys:getenv name)
-    #+CLISP (ext:getenv name)
-    #+ECL (si:getenv name)
-    #+SBCL (sb-unix::posix-getenv name)
-    #+LISPWORKS (lispworks:environment-variable name)
+    (uiop:getenv name)
     default))
 
 (defun set-env(name value)
-  (or
-    #+Allegro (setf (sys:getenv name) value)
-    #+CLISP (setf (ext:getenv name) value)
-    #+ECL (si:setenv name value)
-    #+SBCL (sb-posix:setenv name value 1)
-    #+LISPWORKS (setf (lispworks:environment-variable name) value)
-    (error "set-env is not supported for your Lisp implementation"))
-  t)
+  (setf (uiop:getenv name)
+        value))

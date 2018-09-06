@@ -1,6 +1,10 @@
 language: common-lisp
 sudo: required
 
+branches:
+  only:
+  - master
+
 env:
   global:
     - PATH=~/.roswell/bin:$PATH

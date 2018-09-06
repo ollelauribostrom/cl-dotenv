@@ -13,9 +13,11 @@
     (is (dotenv:get-env "NOT_SET") nil)))
 
 (subtest "cl-dotenv:set-env"
-  (subtest "set-env returns true & sets the environment"
-    (is (dotenv:set-env "TEST_VAR" "test") t)
-    (is (dotenv:get-env "TEST_VAR") "test")))
+  (subtest "set-env sets the environment"
+    (is (and 
+          (dotenv:set-env "TEST_VAR" "test") 
+          (dotenv:get-env "TEST_VAR"))
+        "test")))
 
 (subtest "cl-dotenv:load-env"
   (subtest "load-env throws error if .env file is corrupt"

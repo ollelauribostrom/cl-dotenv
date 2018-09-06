@@ -1,7 +1,7 @@
 ;;; Utility library for loading .env files
 ;;; Author: Olle Lauri Boström <ollebostr@gmail.com>
 ;;; Documentation: https://github.com/ollelauribostrom/cl-dotenv
-;;; Inspiration from http://cl-cookbook.sourceforge.net/os.html & http://www.lispforum.com/viewtopic.php?f=2&t=446
+;;; Inspiration from http://cl-cookbook.sourceforge.net/os.html & http://www.lispforum.com/viewtopic.php?f=2&t=446 & https://www.npmjs.com/package/dotenv
 
 (defpackage cl-dotenv
   (:use :cl :cl-ppcre)

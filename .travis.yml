@@ -13,7 +13,6 @@ env:
     - LISP=sbcl-bin COVERALLS=true
     - LISP=allegro
     - LISP=ecl
-    - LISP=clisp
 
 cache:
   directories:

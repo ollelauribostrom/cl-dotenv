@@ -29,6 +29,20 @@
                                                   "./tests/.env-test"))
     (is (uiop:getenv "TEST_VAR_1") "test1")
     (is (uiop:getenv "TEST_VAR_2") "test2")
-    (is (uiop:getenv "TEST_VAR_3") "")))
+    (is (uiop:getenv "TEST_VAR_3") ""))
+
+  (subtest "CONDITION: malformed-entry is formatted correctly" 
+    (is-print (handler-case (error 'malformed-entry :line "MALFORMED")
+                (error (c)
+                  (format t "~a" c))) 
+              "Malformed entry: MALFORMED."))
+
+  (subtest "CONDITION: duplicated-entry is formatted correctly" 
+    (is-print (handler-case (error 'duplicated-entry :key "KEY"
+                                                     :prev-value "FIRST"
+                                                     :value "SECOND")
+                (error (c)
+                  (format t "~a" c))) 
+              "Duplicated entry: KEY. SECOND would overwrite FIRST")))
 
 (finalize)

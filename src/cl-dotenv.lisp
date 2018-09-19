@@ -35,7 +35,7 @@
    (value :initarg :value :reader value))
   (:report
    (lambda (condition stream)
-     (format stream "Duplicated entry: ~A. ~A would overwrite ~A~%"
+     (format stream "Duplicated entry: ~A. ~A would overwrite ~A"
              (key condition) (value condition) (prev-value condition)))))
 
 (defun whitespace-p (char)

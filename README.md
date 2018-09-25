@@ -6,20 +6,17 @@ Tiny utility library for loading .env files.
 > Currently tested with: SBCL, Allegro, ECL
 
 ## Usage
-Calling `load-env` loads the environment from the specified .env file.
+Calling `load-env` loads the environment from the specified .env file. Use any of the available nicknames `cl-dotenv`, `.env` or `dotenv`.
 
 ```lisp
   (.env:load-env (merge-pathnames "./path/.env"))
 ```
 
-> NOTE: Available under the nicknames `.env` and `dotenv`
-
 ## Parsing rules
 - Empty lines are skipped.
 - Lines beginning with # are treated as comments
-- Empty values are treated as empty strings, `EMPTY=` sets the environment variable EMPTY to `''`
-
-> NOTE: Malformed or duplicated entries will trigger a restart to let you decide on how to proceed with the parsing.
+- Empty values are treated as empty strings, For example: `EMPTY=`
+- Malformed or duplicated entries will trigger a restart to let you decide on how to proceed with the parsing.
 
 ## Installation
 The package is not yet available through Quicklisp. ([Issue](https://github.com/quicklisp/quicklisp-projects/issues/1559))

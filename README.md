@@ -1,48 +1,25 @@
 # cl-dotenv - Load .env files from Common Lisp
 [![Build Status](https://travis-ci.org/ollelauribostrom/cl-dotenv.svg?branch=master)](https://travis-ci.org/ollelauribostrom/cl-dotenv) [![Coverage Status](https://coveralls.io/repos/github/ollelauribostrom/cl-dotenv/badge.svg?branch=master)](https://coveralls.io/github/ollelauribostrom/cl-dotenv?branch=master)
 
-Tiny utility library for loading .env files & getting/setting environment variables.
+Tiny utility library for loading .env files.
 
-> Currently tested with: SBCL, Allegro, ECL, CLISP
+> Currently tested with: SBCL, Allegro, ECL
 
 ## Usage
-> NOTE: Corrupt .env files will generate an error when being loaded. Make sure your .env file is in the format:
-
-```bash
-  key1=value
-  key2=value
-```
-
-### Load & set the environment from an .env file
 Calling `load-env` loads the environment from the specified .env file.
 
 ```lisp
-  (dotenv:load-env (merge-pathnames "./path/.env")) 
-    => t
+  (.env:load-env (merge-pathnames "./path/.env"))
 ```
 
-### Get an environment variable
-The value of a variable can be read by calling `get-env` with the name of the variable.
+> NOTE: Available under the nicknames `.env` and `dotenv`
 
-```lisp
-  (dotenv:get-env "SOME_VAR")
-    => "value" or nil
-```
+## Parsing rules
+- Empty lines are skipped.
+- Lines beginning with # are treated as comments
+- Empty values are treated as empty strings, `EMPTY=` sets the environment variable EMPTY to `''`
 
-If you wish, you can provide a default value that is returned if the variable you are trying to read is not set. 
-
-```lisp
-  (dotenv:get-env "SOME_NONEXISTING_VAR" "default-value")
-    => "default-value"
-```
-
-### Set an environment variable   
-Setting a variable overwrites any existing value   
-
-```lisp
-  (dotenv:set-env "SOME_VAR" "some_value")
-    => t
-```
+> NOTE: Malformed or duplicated entries will trigger a restart to let you decide on how to proceed with the parsing.
 
 ## Installation
 The package is not yet available through Quicklisp. ([Issue](https://github.com/quicklisp/quicklisp-projects/issues/1559))
@@ -58,6 +35,10 @@ The package is not yet available through Quicklisp. ([Issue](https://github.com/
   (ql:quickload :cl-dotenv)
 ```
 
+## Dependencies
+- [alexandria](https://common-lisp.net/project/alexandria/)
+- [serapeum](https://github.com/ruricolist/serapeum)
+
 ## Contributing
 All contributions are very much welcome. Please get familiar with the [contributing guide](https://github.com/ollelauribostrom/cl-dotenv/blob/master/.github/CONTRIBUTING.md).
 
@@ -72,8 +53,6 @@ All contributions are very much welcome. Please get familiar with the [contribut
 * Olle Lauri Boström (ollebostr@gmail.com)
 
 ## Inspiration
-- [The Common Lisp Cookbook, Interfacing with your OS](http://cl-cookbook.sourceforge.net/os.html)
-- [LispForum, Setting Path Variable](http://www.lispforum.com/viewtopic.php?f=2&t=446)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 
 ## License

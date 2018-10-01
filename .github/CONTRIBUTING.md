@@ -22,7 +22,7 @@
 3. It is useful to have the upstream repository registered as well using: `git remote add upstream https://github.com/ollelauribostrom/cl-dotenv.git` and periodically fetch it using `git fetch upstream`.
 
 ### 2. Create feature branch
-Create and switch to new feature branch: `git checkout -b {branch_name} upstream/master`   
+Create and switch to new feature branch: `git checkout -b {branch_name} upstream/master`
 (replace `{branch_name}` with a meaningful name that describes your feature or change).
 
 ### 3. Make changes
@@ -30,8 +30,8 @@ Create and switch to new feature branch: `git checkout -b {branch_name} upstream
 2. Use touch-up commits with main one (squash) -- the `git commit --amend` can be used for that. (You may use git force push after that).
 
 ### 4. Run testing
-`make test`.
-`make coverage`
+- `make test`
+- `make coverage`
 
 ### 5. Push changes to your fork/branch
 1. After lint and all tests pass, push the changes to your fork/branch on GitHub: `git push origin {branch_name}`.

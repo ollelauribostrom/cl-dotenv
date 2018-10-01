@@ -20,6 +20,9 @@ Calling `load-env` loads the environment from the specified .env file. Use any o
 
 ## Installation
 The package [is available through Quickslip.](http://www.quicklisp.org/beta/)
+```
+(ql:quickload :cl-dotenv)
+```
 
 ## Dependencies
 - [alexandria](https://common-lisp.net/project/alexandria/)

@@ -19,17 +19,9 @@ Calling `load-env` loads the environment from the specified .env file. Use any o
 - Malformed or duplicated entries will trigger a restart to let you decide on how to proceed with the parsing.
 
 ## Installation
-The package is not yet available through Quicklisp. ([Issue](https://github.com/quicklisp/quicklisp-projects/issues/1559))
-
-**Manual installation steps**:
-
-```bash
-  cd ~/quicklisp/local-projects/   
-  git clone https://github.com/ollelauribostrom/cl-dotenv.git
+The package is available through [Quicklisp](http://www.quicklisp.org/beta/).
 ```
-
-```lisp
-  (ql:quickload :cl-dotenv)
+(ql:quickload :cl-dotenv)
 ```
 
 ## Dependencies

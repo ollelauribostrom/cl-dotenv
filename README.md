@@ -19,7 +19,10 @@ Calling `load-env` loads the environment from the specified .env file. Use any o
 - Malformed or duplicated entries will trigger a restart to let you decide on how to proceed with the parsing.
 
 ## Installation
-The package [is available through Quickslip.](http://www.quicklisp.org/beta/)
+The package is available through [Quicklisp](http://www.quicklisp.org/beta/).
+```
+(ql:quickload :cl-dotenv)
+```
 
 ## Dependencies
 - [alexandria](https://common-lisp.net/project/alexandria/)

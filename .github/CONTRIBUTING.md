@@ -22,7 +22,7 @@
 3. It is useful to have the upstream repository registered as well using: `git remote add upstream https://github.com/ollelauribostrom/cl-dotenv.git` and periodically fetch it using `git fetch upstream`.
 
 ### 2. Create feature branch
-Create and switch to new feature branch: `git checkout -b {branch_name} upstream/master`   
+Create and switch to new feature branch: `git checkout -b {branch_name} upstream/master`
 (replace `{branch_name}` with a meaningful name that describes your feature or change).
 
 ### 3. Make changes
